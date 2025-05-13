@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج احترافي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            label {
+                font-size: 14px;
+            }
+
+            input[type="text"],
+            .submit-btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="field1">طول</label>
+            <input type="text" id="height" placeholder="طول">
+        </div>
+        <div class="form-group">
+            <label for="field1">عرض</label>
+            <input type="text" id="width" placeholder="عرض">
+        </div>
+        <div class="form-group">
+            <label for="field2">كاشي 60*60</label>
+            <input type="text" id="order60_60" placeholder="" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field2">مساحه ب متر</label>
+            <input type="text" id="order_area" placeholder="" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field2">حديد جسر</label>
+            <input type="text" id="order_bridge" placeholder="" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field2">حديد60</label>
+            <input type="text" id="order60" placeholder="" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field2">حديد120</label>
+            <input type="text" id="order120" placeholder="" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field2">زاوية ستحقاق</label>
+            <input type="text" id="order_angle" placeholder=""readonly>
+        </div>
+        <div class="form-group">
+            <label for="field2">زاوية اضافي</label>
+            <input type="text" id="order_add_angle" placeholder=""readonly>
+        </div>
+         <!-- زر الإرسال -->
+         <button class="submit-btn" onclick="handleSubmit()">احسب</button>
+    </div>
+    <script>
+    function handleSubmit () {
+    const height_value =parseFloat(document.getElementById("height").value);
+    const width_value = parseFloat(document.getElementById("width").value);
+
+    let order1= height_value/0.6;
+    let order2= width_value/0.6;
+    let order60_60=order1*order2;
+    document.getElementById("order60_60").value = order60_60;
+    ///////////////////////
+    const order3_area=order60_60*0.36;
+    document.getElementById("order_area").value = order3_area;
+     ///////////////////////
+     let orderbridge= order3_area*0.22;
+     document.getElementById("order_bridge").value = orderbridge;
+    //////////////////
+    let order60= order3_area*1.25;
+    document.getElementById("order60").value = order60;
+    ///////////////////////
+    let order120= order3_area*1.25;
+    document.getElementById("order120").value = order120;
+    /////////////////////////
+    let orderangle=order3_area/6;
+    document.getElementById("order_angle").value = orderangle;
+////////////////////////////////
+    let pre = height_value+width_value;
+    const prefanil=pre*2;
+    const prefanil2=prefanil/3;
+    let prefanil3=prefanil2-orderangle;
+    document.getElementById("order_add_angle").value = prefanil3;
+
+}
+    </script>
+</body>
+</html>
